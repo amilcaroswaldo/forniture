@@ -9,6 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { BreadcrumbPage } from "@/components/ui/breadcrumb"
+import { fornitureProducts } from "@/lib/data/detailsProducts"
 
 export const metadata = {
   title: "Muebles | Catálogo | MuebleHogar",
@@ -46,39 +47,9 @@ export default function FurniturePage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <ProductCard
-          title="Sofá Esquinero Confort"
-          price={899.99}
-          image="/image-products/cat-forniture-confort-sofa.webp"
-          rating={4.6}
-          reviewCount={86}
-          href="/product/sofa-corner"
-        />
-        <ProductCard
-          title="Mesa de Centro Nórdica"
-          price={199.99}
-          image="/image-products/cat-forniture-table-nordic.webp"
-          rating={4.5}
-          reviewCount={68}
-          href="/product/coffee-table"
-        />
-        <ProductCard
-          title="Silla Ergonómica"
-          price={149.99}
-          image="/image-products/cat-forniture-chair-ergonomic.webp"
-          rating={4.3}
-          reviewCount={92}
-          href="/product/chair"
-        />
-        <ProductCard
-          title="Juego de Comedor"
-          price={599.99}
-          image="/image-products/cat-forniture-dining-set.webp"
-          rating={4.6}
-          reviewCount={53}
-          href="/product/dining-set"
-        />
-        
+        {Object.values(fornitureProducts).map((product) => (
+          <ProductCard key={product.title} {...product} />
+        ))}
       </div>
     </div>
   )

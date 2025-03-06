@@ -8,7 +8,7 @@ import { ProductCard } from "@/components/product-card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-
+import { kitchenProducts, fornitureProducts, toolsProducts, appliancesProducts } from "@/lib/data/detailsProducts"
 export default function CatalogPage() {
   return (
     <div className="container py-8">
@@ -65,86 +65,18 @@ export default function CatalogPage() {
         </div>
         <div className="md:col-span-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ProductCard
-              title="Cocina Modular Premium"
-              price={1299.99}
-              originalPrice={1599.99}
-              image="/image-products/cat-kitchen-modular-premiu.webp"
-              rating={4.8}
-              reviewCount={124}
-              href="/product/kitchen-premium"
-              discount={19}
-            />
-            <ProductCard
-              title="Sofá Esquinero Confort"
-              price={899.99}
-              image="/image-products/cat-forniture-confort-sofa.webp"
-              rating={4.6}
-              reviewCount={86}
-              href="/product/sofa-corner"
-            />
-            <ProductCard
-              title="Set de Herramientas Profesional"
-              price={249.99}
-              originalPrice={329.99}
-              image="/image-products/cat-tools-setprofesional.webp"
-              rating={4.9}
-              reviewCount={215}
-              href="/product/tool-set"
-              discount={24}
-            />
-            <ProductCard
-              title="Mesa de Centro Nórdica"
-              price={199.99}
-              image="/image-products/cat-forniture-table-nordic.webp"
-              rating={4.5}
-              reviewCount={68}
-              href="/product/coffee-table"
-            />
-            <ProductCard
-              title="Alacena Moderna"
-              price={349.99}
-              image="/image-products/cat-kichen-alacena.webp"
-              rating={4.4}
-              reviewCount={43}
-              href="/product/kitchen-cabinet"
-            />
-            <ProductCard
-              title="Taladro Inalámbrico Profesional"
-              price={129.99}
-              originalPrice={159.99}
-              image="/image-products/cat-tools-drill.webp"
-              rating={4.7}
-              reviewCount={156}
-              href="/product/drill"
-              discount={19}
-            />
-            <ProductCard
-              title="Silla Ergonómica"
-              price={149.99}
-              image="/image-products/cat-forniture-chair-ergonomic.webp"
-              rating={4.3}
-              reviewCount={92}
-              href="/product/chair"
-            />
-            <ProductCard
-              title="Refrigerador Smart"
-              price={899.99}
-              originalPrice={1099.99}
-              image="/image-products/cat-appliances-refrigerator.webp"
-              rating={4.8}
-              reviewCount={74}
-              href="/product/refrigerator"
-              discount={18}
-            />
-            <ProductCard
-              title="Juego de Comedor"
-              price={599.99}
-              image="/image-products/cat-forniture-dining-set.webp"
-              rating={4.6}
-              reviewCount={53}
-              href="/product/dining-set"
-            />
+            {Object.values(kitchenProducts).map((product) => (
+              <ProductCard key={product.title} {...product} />
+            ))}
+            {Object.values(fornitureProducts).map((product) => (
+              <ProductCard key={product.title} {...product} />
+            ))}
+            {Object.values(toolsProducts).map((product) => (
+              <ProductCard key={product.title} {...product} />
+            ))}
+            {Object.values(appliancesProducts).map((product) => (
+              <ProductCard key={product.title} {...product} />
+            ))}
           </div>
           <div className="flex justify-center mt-8">
             <Button variant="outline" className="mx-2">

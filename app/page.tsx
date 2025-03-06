@@ -501,7 +501,13 @@ export default function Home() {
                 espacio de tus sueños. Sin compromiso.
               </p>
               <Button variant="secondary" size="lg" asChild>
-                <Link href="/appointment">Agendar Cita Gratuita</Link>
+                <Link
+                  target="_blank"
+                  href={formularioUrl}
+                  rel="noopener noreferrer"
+                >
+                  Agendar Cita Gratuita
+                </Link>
               </Button>
             </div>
             <div className="md:w-1/2 flex justify-center">
@@ -525,7 +531,7 @@ export default function Home() {
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle className="text-xl">
-            {badgetKitchenProducts['cat-kitcjhen-offert'].description}
+              {badgetKitchenProducts["cat-kitcjhen-offert"].description}
             </DialogTitle>
             <DialogDescription>
               Oferta especial por tiempo limitado
@@ -534,13 +540,13 @@ export default function Home() {
           <div className="grid gap-6 py-4">
             <div className="relative h-[200px] rounded-md overflow-hidden">
               <Image
-                src={badgetKitchenProducts['cat-kitcjhen-offert'].image}
+                src={badgetKitchenProducts["cat-kitcjhen-offert"].image}
                 alt="Promoción cocinas"
                 fill
                 className="object-cover"
               />
               <Badge className="absolute top-2 right-2 bg-destructive hover:bg-destructive">
-                {badgetKitchenProducts['cat-kitcjhen-offert'].discount}%
+                {badgetKitchenProducts["cat-kitcjhen-offert"].discount}%
               </Badge>
             </div>
 
@@ -555,7 +561,7 @@ export default function Home() {
                 <div className="flex items-center">
                   <Calendar className="h-5 w-5 mr-2 text-primary" />
                   <span className="font-medium">
-                  {badgetKitchenProducts['cat-kitcjhen-offert'].endOfOffer}
+                    {badgetKitchenProducts["cat-kitcjhen-offert"].endOfOffer}
                   </span>
                 </div>
                 <div className="flex items-center">

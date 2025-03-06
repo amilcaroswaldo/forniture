@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { BreadcrumbPage } from "@/components/ui/breadcrumb"
-
+import { toolsProducts } from "@/lib/data/detailsProducts"
 export const metadata = {
   title: "Herramientas | Catálogo | MuebleHogar",
   description: "Explora nuestra colección de herramientas profesionales para tus proyectos",
@@ -46,43 +46,9 @@ export default function ToolsPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <ProductCard
-          title="Set de Herramientas Profesional"
-          price={249.99}
-          originalPrice={329.99}
-          image="/image-products/cat-tools-setprofesional.webp"
-          rating={4.9}
-          reviewCount={215}
-          href="/product/tool-set"
-          discount={24}
-        />
-        <ProductCard
-          title="Taladro Inalámbrico Profesional"
-          price={129.99}
-          originalPrice={159.99}
-          image="/image-products/cat-tools-drill.webp"
-          rating={4.7}
-          reviewCount={156}
-          href="/product/drill"
-          discount={19}
-        />
-        <ProductCard
-          title="Sierra Circular"
-          price={179.99}
-          image="/image-products/cat-tools-circular-saw.webp"
-          rating={4.6}
-          reviewCount={98}
-          href="/product/circular-saw"
-        />
-        <ProductCard
-          title="Lijadora Orbital"
-          price={89.99}
-          image="/image-products/cat-tools-orbital-sander.webp"
-          rating={4.5}
-          reviewCount={72}
-          href="/product/orbital-sander"
-        />
-        
+        {Object.values(toolsProducts).map((product) => (
+          <ProductCard key={product.title} {...product} />
+        ))}
       </div>
     </div>
   )

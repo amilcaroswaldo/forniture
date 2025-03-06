@@ -165,7 +165,7 @@ export default function RootLayout({
                     </li>
                   </ul>
                 </div>
-                <div>
+                {/* <div>
                   <h3 className="font-semibold mb-4">Servicios</h3>
                   <ul className="space-y-2">
                     <li>
@@ -194,8 +194,8 @@ export default function RootLayout({
                       </Link>
                     </li>
                   </ul>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <h3 className="font-semibold mb-4">Empresa</h3>
                   <ul className="space-y-2">
                     <li>
@@ -224,8 +224,8 @@ export default function RootLayout({
                       </Link>
                     </li>
                   </ul>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <h3 className="font-semibold mb-4">Legal</h3>
                   <ul className="space-y-2">
                     <li>
@@ -266,7 +266,7 @@ export default function RootLayout({
                   <Image src="/placeholder.svg?height=24&width=38" width={38} height={24} alt="PayPal" />
                 </div> */}
               </div>
-            </div>
+            </div> 
           </footer>
         </div>
       </body>

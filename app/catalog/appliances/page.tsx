@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { BreadcrumbPage } from "@/components/ui/breadcrumb"
-
+import { appliancesProducts } from "@/lib/data/detailsProducts"
 export const metadata = {
   title: "Electrodomésticos | Catálogo | MuebleHogar",
   description: "Explora nuestra colección de electrodomésticos para tu hogar",
@@ -46,43 +46,9 @@ export default function AppliancesPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <ProductCard
-          title="Refrigerador Smart"
-          price={899.99}
-          originalPrice={1099.99}
-          image="/image-products/cat-appliances-refrigerator.webp"
-          rating={4.8}
-          reviewCount={74}
-          href="/product/refrigerator"
-          discount={18}
-        />
-        <ProductCard
-          title="Lavadora de Carga Frontal"
-          price={599.99}
-          image="/image-products/cat-appliances-washing-machine.webp"
-          rating={4.7}
-          reviewCount={86}
-          href="/product/washing-machine"
-        />
-        <ProductCard
-          title="Horno Eléctrico"
-          price={349.99}
-          originalPrice={399.99}
-          image="/image-products/cat-appliances-electric-oven.webp"
-          rating={4.6}
-          reviewCount={63}
-          href="/product/electric-oven"
-          discount={13}
-        />
-        <ProductCard
-          title="Microondas Digital"
-          price={129.99}
-          image="/image-products/cat-appliances-microwave.webp"
-          rating={4.5}
-          reviewCount={92}
-          href="/product/microwave"
-        />
-       
+        {Object.values(appliancesProducts).map((product) => (
+          <ProductCard key={product.title} {...product} />
+        ))}
       </div>
     </div>
   )

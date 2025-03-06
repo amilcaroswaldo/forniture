@@ -6,6 +6,7 @@ import {
   ChevronRight,
   Heart,
   Minus,
+  Pen,
   Plus,
   Share2,
   ShoppingCart,
@@ -44,13 +45,13 @@ import {
   kitchenProducts,
   fornitureProducts,
   toolsProducts,
-  badgetKitchenProducts,
+  appliancesProducts,
 } from "@/lib/data/detailsProducts";
-import { Producto as ProductInterface } from "@/lib/data/detailsProducts";
-import { log } from "console";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const detailsProduct = getPropertiesFromObjectSpecified(params);
+  const formularioUrl =
+    "https://docs.google.com/forms/d/e/1FAIpQLSdLhqcqKRuDvqFY4lcJMw6qvskx2CiTT2Ug5tHNEx6RhVsxOA/viewform?usp=header";
   return (
     <div className="container py-8">
       <Breadcrumb className="mb-6">
@@ -63,12 +64,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </BreadcrumbSeparator>
           <BreadcrumbItem>
             <BreadcrumbLink href="/catalog">Catálogo</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator>
-            <ChevronRight className="h-4 w-4" />
-          </BreadcrumbSeparator>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/catalog/kitchens">Cocinas</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
             <ChevronRight className="h-4 w-4" />
@@ -154,14 +149,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <span className="text-muted-foreground">Código: KMP-2023</span>
           </div>
           <div className="flex items-center gap-2 mb-6">
-            <span className="text-3xl font-bold">
-              {detailsProduct.price}
-            </span>
+            <span className="text-3xl font-bold">{detailsProduct.price}</span>
             <span className="text-xl text-muted-foreground line-through">
               {detailsProduct.originalPrice}
             </span>
             <Badge className="ml-2 bg-destructive hover:bg-destructive">
-              {((detailsProduct?.discount ?? 0) - ((detailsProduct?.discount ?? 0) / 100 )* detailsProduct.price).toFixed(2)}
+              {(
+                ((detailsProduct?.discount ?? 0) / 100) *
+                detailsProduct.price
+              ).toFixed(2)}
             </Badge>
           </div>
           <p className="text-muted-foreground mb-6">
@@ -178,7 +174,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </div>
             </div>
             <div>
-              <h3 className="font-medium mb-2">Tamaño</h3>
+              {/* <h3 className="font-medium mb-2" >Tamaño</h3>
               <div className="flex flex-wrap gap-2">
                 <Button variant="outline" className="border-primary">
                   Pequeña (2m)
@@ -186,7 +182,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <Button variant="outline">Mediana (3m)</Button>
                 <Button variant="outline">Grande (4m)</Button>
                 <Button variant="outline">Extra Grande (5m+)</Button>
-              </div>
+              </div> */}
             </div>
             <div>
               <h3 className="font-medium mb-2">Cantidad</h3>
@@ -202,15 +198,22 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <Button size="lg" className="flex-1">
-              <ShoppingCart className="mr-2 h-5 w-5" /> Añadir al carrito
+            <Button size="lg" className="flex-1" asChild>
+              <Link
+                href={formularioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Pen className="mr-2 h-5 w-5" />
+                Soliciitar pedido
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="flex-1">
+            {/* <Button hidden size="lg" variant="outline" className="flex-1">
               <Heart className="mr-2 h-5 w-5" /> Añadir a favoritos
             </Button>
             <Button size="lg" variant="outline" className="w-12 flex-none">
               <Share2 className="h-5 w-5" />
-            </Button>
+            </Button> */}
           </div>
           <div className="bg-muted p-4 rounded-lg space-y-3">
             <div className="flex items-start gap-2">
@@ -293,43 +296,27 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </TabsTrigger> */}
         </TabsList>
         <TabsContent value="description" className="pt-6">
-          <div className="space-y-4">
+          <div className="space-y-3 pl-1">
             <p>
-              La Cocina Modular Premium es la solución perfecta para aquellos
-              que buscan combinar funcionalidad, estética y durabilidad en su
-              hogar. Diseñada con los más altos estándares de calidad, esta
-              cocina modular se adapta a diferentes espacios y necesidades.
+              {detailsProduct.title} {detailsProduct.largeDescription?.mainDescription}
             </p>
             <p>
-              Fabricada con materiales de primera calidad, la Cocina Modular
-              Premium cuenta con:
+              Fabricada con materiales de primera calidad, {detailsProduct.title} cuenta con:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>
-                Módulos personalizables que se adaptan a cualquier espacio
-              </li>
-              <li>Acabados de alta resistencia a manchas, rayones y humedad</li>
-              <li>
-                Herrajes de cierre suave para un uso silencioso y duradero
-              </li>
-              <li>Sistema de organización interior optimizado</li>
-              <li>Iluminación LED integrada para una mejor visibilidad</li>
-              <li>
-                Encimera de material compuesto resistente al calor y a los
-                impactos
-              </li>
+              {detailsProduct.largeDescription?.listMaterials.map((material) => (
+                <li key={material}>{material}</li>
+              ))}
             </ul>
             <p>
-              Cada cocina incluye asesoramiento personalizado de nuestros
+              Incluye asesoramiento personalizado de nuestros
               expertos en diseño, quienes te ayudarán a crear el espacio
               perfecto según tus necesidades y preferencias. Además, ofrecemos
               servicio de instalación profesional para garantizar un resultado
               impecable.
             </p>
             <p>
-              La Cocina Modular Premium no solo transforma tu espacio, sino que
-              también mejora tu experiencia culinaria diaria con su diseño
-              ergonómico y funcional.
+              {detailsProduct.largeDescription?.focusIn}
             </p>
           </div>
         </TabsContent>
@@ -341,25 +328,25 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Ancho</span>
-                    <span>200-500 cm (personalizable)</span>
+                    <span>{detailsProduct.specifications?.width} (personalizable)</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Alto</span>
-                    <span>220 cm</span>
+                    <span>{detailsProduct.specifications?.height}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Profundidad</span>
-                    <span>60 cm</span>
+                    <span>{detailsProduct.specifications?.deep}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Peso</span>
-                    <span>Depende de la configuración</span>
+                    <span>{detailsProduct.specifications?.weight}</span>
                   </div>
                 </div>
               </div>
@@ -370,25 +357,25 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Estructura</span>
-                    <span>MDF de alta densidad</span>
+                    <span>{detailsProduct.specifications?.structure}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Acabado</span>
-                    <span>Laminado de alta presión</span>
+                    <span>{detailsProduct.specifications?.lining}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Encimera</span>
-                    <span>Cuarzo compactado</span>
+                    <span>{detailsProduct.specifications?.Worktop}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Herrajes</span>
-                    <span>Acero inoxidable</span>
+                    <span>{detailsProduct.specifications?.ironwork}</span>
                   </div>
                 </div>
               </div>
@@ -401,7 +388,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     <span className="text-muted-foreground">
                       Módulos incluidos
                     </span>
-                    <span>Personalizable</span>
+                    <span>{detailsProduct.specifications?.modules}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
@@ -409,19 +396,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     <span className="text-muted-foreground">
                       Tipo de cierre
                     </span>
-                    <span>Suave (amortiguado)</span>
+                    <span>{detailsProduct.specifications?.typeClosed}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Iluminación</span>
-                    <span>LED integrada</span>
+                    <span>{detailsProduct.specifications?.lighting}</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Resistencia</span>
-                    <span>Agua, calor, manchas</span>
+                    <span>{detailsProduct.specifications?.resistant}</span>
                   </div>
                 </div>
               </div>
@@ -662,7 +649,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </Accordion>
       </div>
 
-      <div>
+      {/* <div>
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold tracking-tight">
             Productos relacionados
@@ -692,32 +679,59 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             href="/product/modern-cabinet"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
-function getPropertiesFromObjectSpecified(params: { slug: string; }) {
-  const detailsProduct = {
-    "kitchen-premium": kitchenProducts,
-    "kitchen-minimal": kitchenProducts,
-    "kitchen-island": kitchenProducts,
-    "kichen-alacena": kitchenProducts,
-    "sofa-corner": fornitureProducts,
-    "coffee-table": fornitureProducts,
-    "tool-set": toolsProducts,
-  }[params.slug] ||
+function getPropertiesFromObjectSpecified(params: { slug: string }) {
+  const detailsProduct =
+    {
+      "kitchen-premium": kitchenProducts,
+      "kitchen-minimal": kitchenProducts,
+      "kitchen-island": kitchenProducts,
+      "kichen-alacena": kitchenProducts,
+      "kitchen-rustic": kitchenProducts,
+      "kitchen-compact": kitchenProducts,
+      "kitchen-italian": kitchenProducts,
+      "kitchen-smart": kitchenProducts,
+      "sofa-corner": fornitureProducts,
+      "nordic-table": fornitureProducts,
+      "chair": fornitureProducts,
+      "dining-set": fornitureProducts,
+      "tool-set": toolsProducts,
+      "drill": toolsProducts,
+      "circular-saw": toolsProducts,
+      "orbital-sander": toolsProducts,
+      "washing-machine": appliancesProducts,
+      "electric-oven": appliancesProducts,
+      "microwave": appliancesProducts,
+      "refrigerator": appliancesProducts,
+    }[params.slug] ||
     kitchenProducts ||
     fornitureProducts ||
-    toolsProducts;
-  const nameProduct  = {
+    toolsProducts ||
+    appliancesProducts;
+  const nameProduct = {
     "kitchen-premium": "cat-kitchen-modular-premiu",
     "kitchen-minimal": "cat-kichen-minimal",
     "kitchen-island": "cat-kitchen-island",
     "kichen-alacena": "cat-kichen-alacena",
+    "kitchen-rustic": "cat-kitchen-rustic",
+    "kitchen-compact": "cat-kitchen-compact",
+    "kitchen-italian": "cat-kitchen-italian",
+    "kitchen-smart": "cat-kitchen-smart",
     "sofa-corner": "cat-forniture-confort-sofa",
-    "coffee-table": "cat-coffee-table",
+    "nordic-table": "cat-forniture-table-nordic",
+    "chair": "cat-forniture-chair-ergonomic",
+    "dining-set": "cat-forniture-dining-set",
     "tool-set": "cat-tools-setprofesional",
+    "drill": "cat-tools-drill",
+    "circular-saw": "cat-tools-circular-saw",
+    "orbital-sander": "cat-tools-orbital-sander",
+    "washing-machine": "cat-appliances-washing-machine",
+    "electric-oven": "cat-appliances-electric-oven",
+    "microwave": "cat-appliances-microwave",
+    "refrigerator": "cat-appliances-refrigerator",
   }[params.slug];
   return detailsProduct[nameProduct!.toLowerCase()];
 }
-

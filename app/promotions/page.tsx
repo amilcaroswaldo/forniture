@@ -93,7 +93,7 @@ export default function PromotionsPage() {
                         <span className="text-sm text-muted-foreground">Válido hasta el 30 de junio</span>
                       </div>
                       <Button asChild>
-                        <Link href="/catalog/kitchens">Ver oferta</Link>
+                        <Link href="/product/kitchen-premium">Ver oferta</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -122,7 +122,7 @@ export default function PromotionsPage() {
                         <span className="text-sm text-muted-foreground">Válido hasta el 15 de julio</span>
                       </div>
                       <Button asChild>
-                        <Link href="/catalog/furniture/sofas">Ver oferta</Link>
+                        <Link href="product/sofa-corner">Ver oferta</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -151,7 +151,7 @@ export default function PromotionsPage() {
                         <span className="text-xs text-muted-foreground">Hasta el 20 de julio</span>
                       </div>
                       <Button size="sm" asChild>
-                        <Link href="/catalog/tools">Ver oferta</Link>
+                        <Link href="/product/tool-set">Ver oferta</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -203,7 +203,7 @@ export default function PromotionsPage() {
                         <span className="text-xs text-muted-foreground">Hasta el 15 de agosto</span>
                       </div>
                       <Button size="sm" asChild>
-                        <Link href="/catalog/furniture/bedrooms">Ver oferta</Link>
+                        <Link href="/catalog/furniture">Ver oferta</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -237,7 +237,7 @@ export default function PromotionsPage() {
                       <span className="text-sm text-muted-foreground">Válido hasta el 30 de junio</span>
                     </div>
                     <Button asChild>
-                      <Link href="/catalog/kitchens">Ver oferta</Link>
+                      <Link href="product/kitchen-premium">Ver oferta</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -266,7 +266,7 @@ export default function PromotionsPage() {
                       <span className="text-sm text-muted-foreground">Válido hasta el 15 de julio</span>
                     </div>
                     <Button asChild>
-                      <Link href="/catalog/kitchens/islands">Ver oferta</Link>
+                      <Link href="/product/island-kitchen">Ver oferta</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -299,7 +299,7 @@ export default function PromotionsPage() {
                       <span className="text-sm text-muted-foreground">Válido hasta el 15 de julio</span>
                     </div>
                     <Button asChild>
-                      <Link href="/catalog/furniture/sofas">Ver oferta</Link>
+                      <Link href="product/sofa-corner">Ver oferta</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -328,7 +328,7 @@ export default function PromotionsPage() {
                       <span className="text-sm text-muted-foreground">Válido hasta el 15 de agosto</span>
                     </div>
                     <Button asChild>
-                      <Link href="/catalog/furniture/bedrooms">Ver oferta</Link>
+                      <Link href="product/sofa-corner">Ver oferta</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -361,7 +361,7 @@ export default function PromotionsPage() {
                       <span className="text-sm text-muted-foreground">Válido hasta el 20 de julio</span>
                     </div>
                     <Button asChild>
-                      <Link href="/catalog/tools">Ver oferta</Link>
+                      <Link href="/product/tool-set">Ver oferta</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -390,7 +390,7 @@ export default function PromotionsPage() {
                       <span className="text-sm text-muted-foreground">Válido hasta el 30 de junio</span>
                     </div>
                     <Button asChild>
-                      <Link href="/catalog/tools/drills">Ver oferta</Link>
+                      <Link href="/product/drill">Ver oferta</Link>
                     </Button>
                   </CardContent>
                 </Card>
