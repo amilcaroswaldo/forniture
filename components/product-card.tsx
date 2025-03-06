@@ -38,7 +38,7 @@ export function ProductCard({
   reviewCount,
   href,
   discount,
-  description = "Producto de alta calidad diseñado para satisfacer tus necesidades. Fabricado con los mejores materiales y acabados premium.",
+  description,
 }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false)
 

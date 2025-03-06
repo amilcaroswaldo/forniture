@@ -1,7 +1,5 @@
 {
-  "/catalog/kitchens/page": "app/catalog/kitchens/page.js",
-  "/promotions/page": "app/promotions/page.js",
-  "/about/page": "app/about/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/stores/page": "app/stores/page.js"
+  "/product/[slug]/page": "app/product/[slug]/page.js",
+  "/page": "app/page.js",
+  "/catalog/kitchens/page": "app/catalog/kitchens/page.js"
 }

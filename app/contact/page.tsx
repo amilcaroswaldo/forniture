@@ -3,10 +3,7 @@ import Link from "next/link"
 import { Mail, MapPin, Phone, Clock, Send } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export const metadata = {
   title: "Contacto | MuebleHogar",
@@ -14,6 +11,8 @@ export const metadata = {
 }
 
 export default function ContactPage() {
+  const formularioUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdLhqcqKRuDvqFY4lcJMw6qvskx2CiTT2Ug5tHNEx6RhVsxOA/viewform?usp=header";
   return (
     <div className="container py-8 md:py-12">
       <div className="grid gap-6">
@@ -28,63 +27,22 @@ export default function ContactPage() {
         <div className="grid md:grid-cols-2 gap-8 mt-8">
           <div>
             <h2 className="text-2xl font-bold mb-6">Envíanos un mensaje</h2>
-            <form className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Nombre completo
-                  </label>
-                  <Input id="name" placeholder="Tu nombre" />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Correo electrónico
-                  </label>
-                  <Input id="email" type="email" placeholder="tucorreo@ejemplo.com" />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="phone" className="text-sm font-medium">
-                  Teléfono
-                </label>
-                <Input id="phone" placeholder="Tu número de teléfono" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">
-                  Asunto
-                </label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecciona un asunto" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="info">Información general</SelectItem>
-                    <SelectItem value="quote">Solicitud de presupuesto</SelectItem>
-                    <SelectItem value="support">Soporte técnico</SelectItem>
-                    <SelectItem value="complaint">Reclamación</SelectItem>
-                    <SelectItem value="other">Otro</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Mensaje
-                </label>
-                <Textarea id="message" placeholder="Escribe tu mensaje aquí..." rows={5} />
-              </div>
-              <div className="flex items-center space-x-2">
-                <input type="checkbox" id="privacy" className="rounded border-gray-300" />
-                <label htmlFor="privacy" className="text-sm text-muted-foreground">
-                  He leído y acepto la{" "}
-                  <Link href="/privacy" className="text-primary hover:underline">
-                    política de privacidad
-                  </Link>
-                </label>
-              </div>
-              <Button type="submit" className="w-full">
-                <Send className="mr-2 h-4 w-4" /> Enviar mensaje
+            <div className="bg-muted p-6 rounded-lg text-center">
+              <p className="text-muted-foreground mb-6">
+                Completa nuestro formulario en línea para enviarnos tu consulta. Nuestro equipo te responderá a la
+                brevedad posible.
+              </p>
+              <Button size="lg" asChild>
+                <a
+                  href={formularioUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  <Send className="mr-2 h-5 w-5" /> Ir al formulario de contacto
+                </a>
               </Button>
-            </form>
+            </div>
           </div>
 
           <div>

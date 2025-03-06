@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import { Newsletter } from "@/components/newsletter"
-
+import { SocialLinks } from "@/components/social-links"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -58,15 +58,16 @@ export default function RootLayout({
                   <span>Cuenta</span>
                 </Link>
                 */}
-                <Link href="/stores" className="hidden md:flex items-center gap-1">
+                {/* <Link href="/stores" className="hidden md:flex items-center gap-1">
                   <MapPin className="h-5 w-5" />
                   <span>Tiendas</span>
-                </Link>
+                </Link> */}
                 <MobileNav />
               </div>
             </div>
           </header>
           <main className="flex-1">{children}</main>
+          <SocialLinks />
           <Newsletter />
           <footer className="border-t bg-muted">
             <div className="container py-8 md:py-12">

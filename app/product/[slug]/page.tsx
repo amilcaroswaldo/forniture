@@ -1,25 +1,56 @@
-import React from "react"
-import { BreadcrumbPage } from "@/components/ui/breadcrumb"
-import Image from "next/image"
-import Link from "next/link"
-import { ChevronRight, Heart, Minus, Plus, Share2, ShoppingCart, Star, Truck } from "lucide-react"
+import React from "react";
+import { BreadcrumbPage } from "@/components/ui/breadcrumb";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ChevronRight,
+  Heart,
+  Minus,
+  Plus,
+  Share2,
+  ShoppingCart,
+  Star,
+  Truck,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
-import { ProductCard } from "@/components/product-card"
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { ProductCard } from "@/components/product-card";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+} from "@/components/ui/breadcrumb";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+//constante para los productos
+import {
+  kitchenProducts,
+  fornitureProducts,
+  toolsProducts,
+  badgetKitchenProducts,
+} from "@/lib/data/detailsProducts";
+import { Producto as ProductInterface } from "@/lib/data/detailsProducts";
+import { log } from "console";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
+  const detailsProduct = getPropertiesFromObjectSpecified(params);
   return (
     <div className="container py-8">
       <Breadcrumb className="mb-6">
@@ -51,16 +82,18 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       <div className="grid md:grid-cols-2 gap-8 mb-12">
         <div className="space-y-4">
           <div className="relative overflow-hidden rounded-lg border">
-            <Badge className="absolute top-4 right-4 z-10 bg-destructive hover:bg-destructive">-19%</Badge>
+            <Badge className="absolute top-4 right-4 z-10 bg-destructive hover:bg-destructive">
+              -19%
+            </Badge>
             <Image
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2YwZjBmMCIvPjx0ZXh0IHg9IjMwMCIgeT0iMzAwIiBkeT0iLjNlbSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzk5OSI+UHJvZHVjdCBJbWFnZTwvdGV4dD48L3N2Zz4="
-              alt="Cocina Modular Premium"
+              src={detailsProduct.image}
+              alt={detailsProduct.title}
               width={600}
               height={600}
               className="w-full object-cover"
             />
           </div>
-          <div className="grid grid-cols-4 gap-4">
+          {/* <div className="grid grid-cols-4 gap-4">
             <button className="overflow-hidden rounded-md border border-primary">
               <Image
                 src="/placeholder.svg?height=150&width=150"
@@ -97,27 +130,42 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 className="w-full object-cover"
               />
             </button>
-          </div>
+          </div> */}
         </div>
         <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">Cocina Modular Premium</h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-2">
+            {detailsProduct.title}
+          </h1>
           <div className="flex items-center gap-4 mb-4">
             <div className="flex">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className={`h-5 w-5 ${i < 4 ? "fill-primary text-primary" : "text-muted-foreground"}`} />
+                <Star
+                  key={i}
+                  className={`h-5 w-5 ${
+                    i < 4
+                      ? "fill-primary text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                />
               ))}
             </div>
-            <span className="text-muted-foreground">124 reseñas</span>
+            {/* <span className="text-muted-foreground">124 reseñas</span> */}
             <Separator orientation="vertical" className="h-5" />
             <span className="text-muted-foreground">Código: KMP-2023</span>
           </div>
           <div className="flex items-center gap-2 mb-6">
-            <span className="text-3xl font-bold">$1,299.99</span>
-            <span className="text-xl text-muted-foreground line-through">$1,599.99</span>
-            <Badge className="ml-2 bg-destructive hover:bg-destructive">Ahorra $300</Badge>
+            <span className="text-3xl font-bold">
+              {detailsProduct.price}
+            </span>
+            <span className="text-xl text-muted-foreground line-through">
+              {detailsProduct.originalPrice}
+            </span>
+            <Badge className="ml-2 bg-destructive hover:bg-destructive">
+              {((detailsProduct?.discount ?? 0) - ((detailsProduct?.discount ?? 0) / 100 )* detailsProduct.price).toFixed(2)}
+            </Badge>
           </div>
           <p className="text-muted-foreground mb-6">
-            Cocina modular premium con acabados de alta calidad, diseñada para maximizar el espacio y ofrecer una experiencia de cocina excepcional. Incluye módulos personalizables y materiales resistentes a manchas y humedad.
+            {detailsProduct.description}
           </p>
           <div className="space-y-6 mb-8">
             <div>
@@ -132,7 +180,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <div>
               <h3 className="font-medium mb-2">Tamaño</h3>
               <div className="flex flex-wrap gap-2">
-                <Button variant="outline" className="border-primary">Pequeña (2m)</Button>
+                <Button variant="outline" className="border-primary">
+                  Pequeña (2m)
+                </Button>
                 <Button variant="outline">Mediana (3m)</Button>
                 <Button variant="outline">Grande (4m)</Button>
                 <Button variant="outline">Extra Grande (5m+)</Button>
@@ -167,7 +217,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <Truck className="h-5 w-5 mt-0.5 text-primary" />
               <div>
                 <h4 className="font-medium">Envío gratuito</h4>
-                <p className="text-sm text-muted-foreground">En pedidos superiores a $999</p>
+                <p className="text-sm text-muted-foreground">
+                  En pedidos superiores a $999
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-2">
@@ -190,7 +242,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </svg>
               <div>
                 <h4 className="font-medium">Retiro en tienda</h4>
-                <p className="text-sm text-muted-foreground">Disponible en 2-3 días hábiles</p>
+                <p className="text-sm text-muted-foreground">
+                  Disponible en 2-3 días hábiles
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-2">
@@ -211,7 +265,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </svg>
               <div>
                 <h4 className="font-medium">Garantía de 5 años</h4>
-                <p className="text-sm text-muted-foreground">Protección extendida incluida</p>
+                <p className="text-sm text-muted-foreground">
+                  Protección extendida incluida
+                </p>
               </div>
             </div>
           </div>
@@ -220,37 +276,60 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <Tabs defaultValue="description" className="mb-12">
         <TabsList className="w-full justify-start border-b rounded-none h-auto p-0">
-          <TabsTrigger value="description" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
+          <TabsTrigger
+            value="description"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary"
+          >
             Descripción
           </TabsTrigger>
-          <TabsTrigger value="specifications" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
+          <TabsTrigger
+            value="specifications"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary"
+          >
             Especificaciones
           </TabsTrigger>
-          <TabsTrigger value="reviews" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
+          {/* <TabsTrigger value="reviews" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
             Reseñas (124)
-          </TabsTrigger>
+          </TabsTrigger> */}
         </TabsList>
         <TabsContent value="description" className="pt-6">
           <div className="space-y-4">
             <p>
-              La Cocina Modular Premium es la solución perfecta para aquellos que buscan combinar funcionalidad, estética y durabilidad en su hogar. Diseñada con los más altos estándares de calidad, esta cocina modular se adapta a diferentes espacios y necesidades.
+              La Cocina Modular Premium es la solución perfecta para aquellos
+              que buscan combinar funcionalidad, estética y durabilidad en su
+              hogar. Diseñada con los más altos estándares de calidad, esta
+              cocina modular se adapta a diferentes espacios y necesidades.
             </p>
             <p>
-              Fabricada con materiales de primera calidad, la Cocina Modular Premium cuenta con:
+              Fabricada con materiales de primera calidad, la Cocina Modular
+              Premium cuenta con:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Módulos personalizables que se adaptan a cualquier espacio</li>
+              <li>
+                Módulos personalizables que se adaptan a cualquier espacio
+              </li>
               <li>Acabados de alta resistencia a manchas, rayones y humedad</li>
-              <li>Herrajes de cierre suave para un uso silencioso y duradero</li>
+              <li>
+                Herrajes de cierre suave para un uso silencioso y duradero
+              </li>
               <li>Sistema de organización interior optimizado</li>
               <li>Iluminación LED integrada para una mejor visibilidad</li>
-              <li>Encimera de material compuesto resistente al calor y a los impactos</li>
+              <li>
+                Encimera de material compuesto resistente al calor y a los
+                impactos
+              </li>
             </ul>
             <p>
-              Cada cocina incluye asesoramiento personalizado de nuestros expertos en diseño, quienes te ayudarán a crear el espacio perfecto según tus necesidades y preferencias. Además, ofrecemos servicio de instalación profesional para garantizar un resultado impecable.
+              Cada cocina incluye asesoramiento personalizado de nuestros
+              expertos en diseño, quienes te ayudarán a crear el espacio
+              perfecto según tus necesidades y preferencias. Además, ofrecemos
+              servicio de instalación profesional para garantizar un resultado
+              impecable.
             </p>
             <p>
-              La Cocina Modular Premium no solo transforma tu espacio, sino que también mejora tu experiencia culinaria diaria con su diseño ergonómico y funcional.
+              La Cocina Modular Premium no solo transforma tu espacio, sino que
+              también mejora tu experiencia culinaria diaria con su diseño
+              ergonómico y funcional.
             </p>
           </div>
         </TabsContent>
@@ -319,13 +398,17 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Módulos incluidos</span>
+                    <span className="text-muted-foreground">
+                      Módulos incluidos
+                    </span>
                     <span>Personalizable</span>
                   </div>
                 </div>
                 <div className="border rounded-lg p-4">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Tipo de cierre</span>
+                    <span className="text-muted-foreground">
+                      Tipo de cierre
+                    </span>
                     <span>Suave (amortiguado)</span>
                   </div>
                 </div>
@@ -345,7 +428,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </TabsContent>
-        <TabsContent value="reviews" className="pt-6">
+        <TabsContent value="reviews" className="pt-6" hidden={true}>
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row gap-8">
               <div className="md:w-1/3">
@@ -353,10 +436,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   <div className="text-5xl font-bold">4.8</div>
                   <div className="flex justify-center md:justify-start my-2">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`h-5 w-5 ${i < 4 ? "fill-primary text-primary" : "text-muted-foreground"}`} />
+                      <Star
+                        key={i}
+                        className={`h-5 w-5 ${
+                          i < 4
+                            ? "fill-primary text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                      />
                     ))}
                   </div>
-                  <div className="text-muted-foreground">Basado en 124 reseñas</div>
+                  <div className="text-muted-foreground">
+                    Basado en 124 reseñas
+                  </div>
                 </div>
                 <div className="mt-6 space-y-2">
                   <div className="flex items-center gap-2">
@@ -414,15 +506,23 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   <div className="border rounded-lg p-4">
                     <div className="flex justify-between mb-2">
                       <div className="font-medium">María González</div>
-                      <div className="text-sm text-muted-foreground">Hace 2 semanas</div>
+                      <div className="text-sm text-muted-foreground">
+                        Hace 2 semanas
+                      </div>
                     </div>
                     <div className="flex mb-2">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                        <Star
+                          key={i}
+                          className="h-4 w-4 fill-primary text-primary"
+                        />
                       ))}
                     </div>
                     <p className="text-sm mb-2">
-                      Estoy encantada con mi nueva cocina. El diseño es exactamente lo que quería y la calidad es excepcional. El equipo fue muy profesional desde el diseño hasta la instalación.
+                      Estoy encantada con mi nueva cocina. El diseño es
+                      exactamente lo que quería y la calidad es excepcional. El
+                      equipo fue muy profesional desde el diseño hasta la
+                      instalación.
                     </p>
                     <div className="flex gap-2 mt-4">
                       <Image
@@ -444,69 +544,119 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   <div className="border rounded-lg p-4">
                     <div className="flex justify-between mb-2">
                       <div className="font-medium">Carlos Rodríguez</div>
-                      <div className="text-sm text-muted-foreground">Hace 1 mes</div>
+                      <div className="text-sm text-muted-foreground">
+                        Hace 1 mes
+                      </div>
                     </div>
                     <div className="flex mb-2">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`h-4 w-4 ${i < 4 ? "fill-primary text-primary" : "text-muted-foreground"}`} />
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${
+                            i < 4
+                              ? "fill-primary text-primary"
+                              : "text-muted-foreground"
+                          }`}
+                        />
                       ))}
                     </div>
                     <p className="text-sm">
-                      La calidad de los materiales es excelente y el diseño quedó perfecto para mi espacio. El único detalle fue que la entrega se retrasó un par de días, pero el resultado final valió la pena.
+                      La calidad de los materiales es excelente y el diseño
+                      quedó perfecto para mi espacio. El único detalle fue que
+                      la entrega se retrasó un par de días, pero el resultado
+                      final valió la pena.
                     </p>
                   </div>
                   <div className="border rounded-lg p-4">
                     <div className="flex justify-between mb-2">
                       <div className="font-medium">Ana Martínez</div>
-                      <div className="text-sm text-muted-foreground">Hace 2 meses</div>
+                      <div className="text-sm text-muted-foreground">
+                        Hace 2 meses
+                      </div>
                     </div>
                     <div className="flex mb-2">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                        <Star
+                          key={i}
+                          className="h-4 w-4 fill-primary text-primary"
+                        />
                       ))}
                     </div>
                     <p className="text-sm">
-                      Increíble servicio y producto. Los módulos son muy versátiles y la calidad es superior a otras marcas que había considerado. El asesoramiento de diseño fue clave para aprovechar al máximo mi espacio.
+                      Increíble servicio y producto. Los módulos son muy
+                      versátiles y la calidad es superior a otras marcas que
+                      había considerado. El asesoramiento de diseño fue clave
+                      para aprovechar al máximo mi espacio.
                     </p>
                   </div>
                 </div>
-                <Button variant="outline" className="w-full mt-6">Cargar más reseñas</Button>
+                <Button variant="outline" className="w-full mt-6">
+                  Cargar más reseñas
+                </Button>
               </div>
             </div>
           </div>
         </TabsContent>
       </Tabs>
 
-      <div className="mb-12">
+      <div className="mb-12" hidden={true}>
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="faq-1">
-            <AccordionTrigger>¿Cuánto tiempo tarda la instalación?</AccordionTrigger>
+            <AccordionTrigger>
+              ¿Cuánto tiempo tarda la instalación?
+            </AccordionTrigger>
             <AccordionContent>
-              El tiempo de instalación depende del tamaño y complejidad de la cocina. En promedio, una cocina estándar toma entre 2 y 3 días para su instalación completa. Nuestro equipo de instaladores profesionales trabaja de manera eficiente para minimizar las molestias en su hogar.
+              El tiempo de instalación depende del tamaño y complejidad de la
+              cocina. En promedio, una cocina estándar toma entre 2 y 3 días
+              para su instalación completa. Nuestro equipo de instaladores
+              profesionales trabaja de manera eficiente para minimizar las
+              molestias en su hogar.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="faq-2">
-            <AccordionTrigger>¿Puedo personalizar los colores y acabados?</AccordionTrigger>
+            <AccordionTrigger>
+              ¿Puedo personalizar los colores y acabados?
+            </AccordionTrigger>
             <AccordionContent>
-              Sí, ofrecemos una amplia gama de colores, acabados y materiales para personalizar su cocina según sus preferencias. Puede elegir entre diferentes tipos de laminados, lacados, maderas, encimeras y herrajes para crear una cocina única que se adapte a su estilo y necesidades.
+              Sí, ofrecemos una amplia gama de colores, acabados y materiales
+              para personalizar su cocina según sus preferencias. Puede elegir
+              entre diferentes tipos de laminados, lacados, maderas, encimeras y
+              herrajes para crear una cocina única que se adapte a su estilo y
+              necesidades.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="faq-3">
-            <AccordionTrigger>¿Qué incluye el servicio de diseño?</AccordionTrigger>
+            <AccordionTrigger>
+              ¿Qué incluye el servicio de diseño?
+            </AccordionTrigger>
             <AccordionContent>
-              Nuestro servicio de diseño incluye una consulta inicial para entender sus necesidades, medición del espacio, creación de un diseño 3D personalizado, selección de materiales y acabados, y asesoramiento sobre la distribución óptima. Todo esto sin costo adicional al comprar su cocina con nosotros.
+              Nuestro servicio de diseño incluye una consulta inicial para
+              entender sus necesidades, medición del espacio, creación de un
+              diseño 3D personalizado, selección de materiales y acabados, y
+              asesoramiento sobre la distribución óptima. Todo esto sin costo
+              adicional al comprar su cocina con nosotros.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="faq-4">
             <AccordionTrigger>¿Cuál es el plazo de entrega?</AccordionTrigger>
             <AccordionContent>
-              El plazo de entrega estándar es de 3 a 4 semanas desde la confirmación del pedido. Para proyectos más complejos o personalizados, el tiempo puede extenderse hasta 6 semanas. Le mantendremos informado sobre el estado de su pedido en todo momento.
+              El plazo de entrega estándar es de 3 a 4 semanas desde la
+              confirmación del pedido. Para proyectos más complejos o
+              personalizados, el tiempo puede extenderse hasta 6 semanas. Le
+              mantendremos informado sobre el estado de su pedido en todo
+              momento.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="faq-5">
-            <AccordionTrigger>¿Qué cubre la garantía de 5 años?</AccordionTrigger>
+            <AccordionTrigger>
+              ¿Qué cubre la garantía de 5 años?
+            </AccordionTrigger>
             <AccordionContent>
-              Nuestra garantía de 5 años cubre defectos de fabricación, problemas estructurales, herrajes y mecanismos. También incluye servicio técnico para ajustes y reparaciones relacionadas con el uso normal del producto. Los electrodomésticos tienen su garantía específica según el fabricante.
+              Nuestra garantía de 5 años cubre defectos de fabricación,
+              problemas estructurales, herrajes y mecanismos. También incluye
+              servicio técnico para ajustes y reparaciones relacionadas con el
+              uso normal del producto. Los electrodomésticos tienen su garantía
+              específica según el fabricante.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -514,24 +664,29 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <div>
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold tracking-tight">Productos relacionados</h2>
-          <Link href="/catalog/kitchens" className="flex items-center text-primary">
+          <h2 className="text-2xl font-bold tracking-tight">
+            Productos relacionados
+          </h2>
+          <Link
+            href="/catalog/kitchens"
+            className="flex items-center text-primary"
+          >
             Ver todos <ChevronRight className="h-4 w-4 ml-1" />
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <ProductCard 
+          <ProductCard
             title="Isla de Cocina Multifuncional"
             price={499.99}
-            image="/placeholder.svg?height=300&width=300"
+            image="/image-products/cat-kitchen-island.webp"
             rating={4.6}
             reviewCount={57}
             href="/product/kitchen-island"
           />
-          <ProductCard 
+          <ProductCard
             title="Alacena Moderna"
             price={299.99}
-            image="/placeholder.svg?height=300&width=300"
+            image="/image-products/cat-kichen-alacena.webp"
             rating={4.8}
             reviewCount={42}
             href="/product/modern-cabinet"
@@ -539,6 +694,30 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </div>
       </div>
     </div>
-  )
+  );
+}
+function getPropertiesFromObjectSpecified(params: { slug: string; }) {
+  const detailsProduct = {
+    "kitchen-premium": kitchenProducts,
+    "kitchen-minimal": kitchenProducts,
+    "kitchen-island": kitchenProducts,
+    "kichen-alacena": kitchenProducts,
+    "sofa-corner": fornitureProducts,
+    "coffee-table": fornitureProducts,
+    "tool-set": toolsProducts,
+  }[params.slug] ||
+    kitchenProducts ||
+    fornitureProducts ||
+    toolsProducts;
+  const nameProduct  = {
+    "kitchen-premium": "cat-kitchen-modular-premiu",
+    "kitchen-minimal": "cat-kichen-minimal",
+    "kitchen-island": "cat-kitchen-island",
+    "kichen-alacena": "cat-kichen-alacena",
+    "sofa-corner": "cat-forniture-confort-sofa",
+    "coffee-table": "cat-coffee-table",
+    "tool-set": "cat-tools-setprofesional",
+  }[params.slug];
+  return detailsProduct[nameProduct!.toLowerCase()];
 }
 
