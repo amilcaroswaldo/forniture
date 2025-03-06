@@ -30,8 +30,6 @@ import {
 
 export default function Home() {
   const [showKitchenOfferModal, setShowKitchenOfferModal] = useState(false);
-  const formularioUrl =
-    "https://docs.google.com/forms/d/e/1FAIpQLSdLhqcqKRuDvqFY4lcJMw6qvskx2CiTT2Ug5tHNEx6RhVsxOA/viewform?usp=header";
   return (
     <>
       <section className="relative">
@@ -63,20 +61,6 @@ export default function Home() {
                   asChild
                 >
                   <Link href="/promotions">Ofertas Especiales</Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white/10 text-white hover:bg-white/20"
-                  asChild
-                >
-                  <Link
-                    target="_blank"
-                    href={formularioUrl}
-                    rel="noopener noreferrer"
-                  >
-                    Solicitar Presupuesto
-                  </Link>
                 </Button>
               </div>
             </div>
@@ -271,26 +255,6 @@ export default function Home() {
               <p className="text-white/90 mb-4">
                 Crea la cocina de tus sueños con nuestros expertos
               </p>
-              <Button
-                variant="outline"
-                className="w-fit bg-white/10 text-white hover:bg-white/20"
-                asChild
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white/10 text-white hover:bg-white/20"
-                  asChild
-                >
-                  <Link
-                    target="_blank"
-                    href={formularioUrl}
-                    rel="noopener noreferrer"
-                  >
-                    Agendar cita
-                  </Link>
-                </Button>
-              </Button>
             </div>
           </div>
         </div>
@@ -500,15 +464,6 @@ export default function Home() {
                 Agenda una cita con nuestros expertos y comienza a diseñar el
                 espacio de tus sueños. Sin compromiso.
               </p>
-              <Button variant="secondary" size="lg" asChild>
-                <Link
-                  target="_blank"
-                  href={formularioUrl}
-                  rel="noopener noreferrer"
-                >
-                  Agendar Cita Gratuita
-                </Link>
-              </Button>
             </div>
             <div className="md:w-1/2 flex justify-center">
               <Image

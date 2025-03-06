@@ -1,9 +1,17 @@
 {
-  "/about/page": "app/about/page.js",
-  "/page": "app/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/cart/page": "app/cart/page.js",
   "/catalog/page": "app/catalog/page.js",
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/product/[slug]/page": "app/product/[slug]/page.js",
   "/catalog/kitchens/page": "app/catalog/kitchens/page.js",
+  "/catalog/appliances/page": "app/catalog/appliances/page.js",
+  "/catalog/tools/page": "app/catalog/tools/page.js",
+  "/catalog/furniture/page": "app/catalog/furniture/page.js",
+  "/catalog/materials/page": "app/catalog/materials/page.js",
   "/contact/page": "app/contact/page.js",
-  "/promotions/page": "app/promotions/page.js"
+  "/about/page": "app/about/page.js",
+  "/promotions/page": "app/promotions/page.js",
+  "/stores/page": "app/stores/page.js"
 }

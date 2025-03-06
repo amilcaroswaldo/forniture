@@ -26,38 +26,33 @@ export default function StoresPage() {
         <div className="mt-8">
           <Tabs defaultValue="madrid" className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8">
-              <TabsTrigger value="madrid">Madrid</TabsTrigger>
-              <TabsTrigger value="barcelona">Barcelona</TabsTrigger>
+              <TabsTrigger value="madrid">Ahuachapán</TabsTrigger>
+              {/* <TabsTrigger value="barcelona">Barcelona</TabsTrigger>
               <TabsTrigger value="valencia">Valencia</TabsTrigger>
-              <TabsTrigger value="sevilla">Sevilla</TabsTrigger>
+              <TabsTrigger value="sevilla">Sevilla</TabsTrigger> */}
             </TabsList>
 
             <TabsContent value="madrid">
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h2 className="text-2xl font-bold mb-4">Tienda Madrid Centro</h2>
+                  <h2 className="text-2xl font-bold mb-4">Ahuachapán</h2>
                   <Card className="mb-6">
                     <CardContent className="p-6">
                       <div className="space-y-4">
-                        <div className="flex items-start gap-3">
-                          <MapPin className="h-5 w-5 text-primary mt-0.5" />
-                          <div>
-                            <h3 className="font-medium">Dirección</h3>
-                            <p className="text-muted-foreground">Av. Principal 123, 28001 Madrid</p>
-                          </div>
-                        </div>
+                        {/* <div className="flex items-start gap-3">
+                        </div> */}
                         <div className="flex items-start gap-3">
                           <Phone className="h-5 w-5 text-primary mt-0.5" />
                           <div>
                             <h3 className="font-medium">Teléfono</h3>
-                            <p className="text-muted-foreground">+34 910 123 456</p>
+                            <p className="text-muted-foreground">muy pronto...</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
                           <Mail className="h-5 w-5 text-primary mt-0.5" />
                           <div>
                             <h3 className="font-medium">Email</h3>
-                            <p className="text-muted-foreground">madrid@mueblehogar.com</p>
+                            <p className="text-muted-foreground">dekomuebles123@gmail.com</p>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">

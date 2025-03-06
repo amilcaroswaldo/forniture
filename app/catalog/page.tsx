@@ -17,7 +17,7 @@ export default function CatalogPage() {
           <h1 className="text-3xl font-bold tracking-tight">Catálogo de Productos</h1>
           <p className="text-muted-foreground">Explora nuestra amplia selección de productos para tu hogar</p>
         </div>
-        <div className="flex items-center gap-4">
+        {/* <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-2">
             <Button variant="outline" size="icon">
               <Grid3X3 className="h-4 w-4" />
@@ -57,13 +57,13 @@ export default function CatalogPage() {
               </div>
             </SheetContent>
           </Sheet>
-        </div>
-      </div>
+        </div>*/}
+      </div> 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
           <DesktopFilters />
-        </div>
-        <div className="md:col-span-3">
+        </div> */}
+        <div className="md:col-span-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.values(kitchenProducts).map((product) => (
               <ProductCard key={product.title} {...product} />

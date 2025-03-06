@@ -4,12 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ChevronRight,
-  Heart,
   Minus,
   Pen,
   Plus,
-  Share2,
-  ShoppingCart,
   Star,
   Truck,
 } from "lucide-react";
@@ -18,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { ProductCard } from "@/components/product-card";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -26,13 +22,6 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Accordion,
   AccordionContent,
@@ -415,175 +404,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </TabsContent>
-        <TabsContent value="reviews" className="pt-6" hidden={true}>
-          <div className="space-y-6">
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="md:w-1/3">
-                <div className="text-center md:text-left">
-                  <div className="text-5xl font-bold">4.8</div>
-                  <div className="flex justify-center md:justify-start my-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-5 w-5 ${
-                          i < 4
-                            ? "fill-primary text-primary"
-                            : "text-muted-foreground"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <div className="text-muted-foreground">
-                    Basado en 124 reseñas
-                  </div>
-                </div>
-                <div className="mt-6 space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm">5 estrellas</div>
-                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                      <div className="bg-primary h-full w-[85%]"></div>
-                    </div>
-                    <div className="text-sm">85%</div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm">4 estrellas</div>
-                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                      <div className="bg-primary h-full w-[10%]"></div>
-                    </div>
-                    <div className="text-sm">10%</div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm">3 estrellas</div>
-                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                      <div className="bg-primary h-full w-[3%]"></div>
-                    </div>
-                    <div className="text-sm">3%</div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm">2 estrellas</div>
-                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                      <div className="bg-primary h-full w-[1%]"></div>
-                    </div>
-                    <div className="text-sm">1%</div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm">1 estrella</div>
-                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                      <div className="bg-primary h-full w-[1%]"></div>
-                    </div>
-                    <div className="text-sm">1%</div>
-                  </div>
-                </div>
-              </div>
-              <div className="md:w-2/3">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="font-semibold text-lg">Reseñas de clientes</h3>
-                  <Select defaultValue="recent">
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Ordenar por" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="recent">Más recientes</SelectItem>
-                      <SelectItem value="highest">Mayor puntuación</SelectItem>
-                      <SelectItem value="lowest">Menor puntuación</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-6">
-                  <div className="border rounded-lg p-4">
-                    <div className="flex justify-between mb-2">
-                      <div className="font-medium">María González</div>
-                      <div className="text-sm text-muted-foreground">
-                        Hace 2 semanas
-                      </div>
-                    </div>
-                    <div className="flex mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm mb-2">
-                      Estoy encantada con mi nueva cocina. El diseño es
-                      exactamente lo que quería y la calidad es excepcional. El
-                      equipo fue muy profesional desde el diseño hasta la
-                      instalación.
-                    </p>
-                    <div className="flex gap-2 mt-4">
-                      <Image
-                        src="/placeholder.svg?height=80&width=80"
-                        alt="Foto de reseña"
-                        width={80}
-                        height={80}
-                        className="rounded-md"
-                      />
-                      <Image
-                        src="/placeholder.svg?height=80&width=80"
-                        alt="Foto de reseña"
-                        width={80}
-                        height={80}
-                        className="rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div className="border rounded-lg p-4">
-                    <div className="flex justify-between mb-2">
-                      <div className="font-medium">Carlos Rodríguez</div>
-                      <div className="text-sm text-muted-foreground">
-                        Hace 1 mes
-                      </div>
-                    </div>
-                    <div className="flex mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < 4
-                              ? "fill-primary text-primary"
-                              : "text-muted-foreground"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm">
-                      La calidad de los materiales es excelente y el diseño
-                      quedó perfecto para mi espacio. El único detalle fue que
-                      la entrega se retrasó un par de días, pero el resultado
-                      final valió la pena.
-                    </p>
-                  </div>
-                  <div className="border rounded-lg p-4">
-                    <div className="flex justify-between mb-2">
-                      <div className="font-medium">Ana Martínez</div>
-                      <div className="text-sm text-muted-foreground">
-                        Hace 2 meses
-                      </div>
-                    </div>
-                    <div className="flex mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm">
-                      Increíble servicio y producto. Los módulos son muy
-                      versátiles y la calidad es superior a otras marcas que
-                      había considerado. El asesoramiento de diseño fue clave
-                      para aprovechar al máximo mi espacio.
-                    </p>
-                  </div>
-                </div>
-                <Button variant="outline" className="w-full mt-6">
-                  Cargar más reseñas
-                </Button>
-              </div>
-            </div>
-          </div>
-        </TabsContent>
+        {/* <TabsContent value="reviews" className="pt-6">
+          Reviews content here...
+        </TabsContent> */}
       </Tabs>
 
       <div className="mb-12" hidden={true}>

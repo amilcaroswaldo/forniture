@@ -11,8 +11,6 @@ export const metadata = {
 }
 
 export default function ContactPage() {
-  const formularioUrl =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdLhqcqKRuDvqFY4lcJMw6qvskx2CiTT2Ug5tHNEx6RhVsxOA/viewform?usp=header";
   return (
     <div className="container py-8 md:py-12">
       <div className="grid gap-6">
@@ -29,26 +27,15 @@ export default function ContactPage() {
             <h2 className="text-2xl font-bold mb-6">Envíanos un mensaje</h2>
             <div className="bg-muted p-6 rounded-lg text-center">
               <p className="text-muted-foreground mb-6">
-                Completa nuestro formulario en línea para enviarnos tu consulta. Nuestro equipo te responderá a la
-                brevedad posible.
+                Puedes contactarnos a través de nuestras redes sociales.
               </p>
-              <Button size="lg" asChild>
-                <a
-                  href={formularioUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  <Send className="mr-2 h-5 w-5" /> Ir al formulario de contacto
-                </a>
-              </Button>
             </div>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold mb-6">Información de contacto</h2>
             <div className="grid gap-6">
-              <Card>
+              {/* <Card>
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="rounded-full bg-primary/10 p-3">
@@ -61,7 +48,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
@@ -71,26 +58,9 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold mb-1">Correo electrónico</h3>
                       <p className="text-muted-foreground mb-1">Consultas generales</p>
-                      <p className="font-medium">info@mueblehogar.com</p>
+                      <p className="font-medium">dekomuebles123@gmail.com</p>
                       <p className="text-muted-foreground mt-2 mb-1">Atención al cliente</p>
-                      <p className="font-medium">atencion@mueblehogar.com</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-full bg-primary/10 p-3">
-                      <MapPin className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Tienda principal</h3>
-                      <p className="text-muted-foreground mb-1">Visítanos en nuestra tienda</p>
-                      <p className="font-medium">Av. Principal 123, 28001 Madrid</p>
-                      <Link href="/stores" className="text-primary hover:underline text-sm mt-2 inline-block">
-                        Ver todas las tiendas
-                      </Link>
+                      <p className="font-medium">dekomuebles123@gmail.com</p>
                     </div>
                   </div>
                 </CardContent>
